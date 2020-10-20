@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 取值表达式 </title>
+</head>
+<body>
+<div id="app" class="tinn">
+    {{ msg.toUpperCase() }}
+</div>
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '.tinn',
+        data: {
+            msg: 'love&peace'
+        },
+    })
+</script>
+
+</body>
+</html>

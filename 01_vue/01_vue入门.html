@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 入门 </title>
+</head>
+<body>
+<div id="app">
+    <h1>{{info}}</h1>
+    {{message}}
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            message: "Hello unyoah",
+            info: '玻璃晴朗，橘子辉煌'
+        },
+    })
+</script>
+
+</body>
+</html>
