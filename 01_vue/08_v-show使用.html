@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-show的使用 </title>
+</head>
+<body>
+<div id="app">
+    <h3 v-show="true"> {{msg}}</h3><br>
+
+    <input type="button" value="show" @click="show">
+    <h3 v-show="isShow"> {{msg}}</h3><br>
+
+    <input type="button" value="-" @click="sub">
+    <input type="button" value="+" @click="add">
+    <h3 v-show="num>10"> {{msg}}</h3>
+
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '🥗🥗🥗🥗🥗🥗🥗🥗🥗',
+            isShow: true,
+            num: 7
+        },
+        methods: {
+            show() {
+                this.isShow = !this.isShow
+            },
+            add() {
+                this.num++;
+            },
+            sub() {
+                this.num--;
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

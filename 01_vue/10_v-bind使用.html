@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-bind使用 </title>
+    <style>
+        .aa {
+            border: 30px #fec0cb solid;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a href="javascript:;" style="text-decoration: none" @click="addCss">🍔</a>
+    <a href="javascript:;" style="text-decoration: none" @click="change_img">🍔</a>
+    <br>
+    <img v-bind:class="{aa:showCss}" v-bind:title="title" v-bind:src="src">
+    <br>
+    <img :class="{aa:showCss}" :title="title" :src="src">
+
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '一只派大★',
+            src: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3154540533,1484232937&fm=26&gp=0.jpg',
+            showCss: true
+        },
+        methods: {
+            addCss() {
+                this.showCss = !this.showCss
+            },
+            change_img() {
+                this.src = "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3176325727,2053713553&fm=26&gp=0.jpg"
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

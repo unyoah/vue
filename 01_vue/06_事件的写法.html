@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 入门 </title>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="-" v-on:click="sub_age">{{age}}<input type="button" value="+"
+                                                                             v-on:click="add_age">
+    <hr>
+    <input type="button" value="-" @click="sub">{{age}}<input type="button" value="+"
+                                                                             @click="add">
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            age: 18
+        },
+        methods: {
+            add_age: function () {
+                this.age++
+            },
+            sub_age: function () {
+                this.age--
+            },
+            //简单形式
+            add() {
+                this.age++
+            },
+            sub() {
+                this.age--
+            },
+        }
+    })
+</script>
+
+</body>
+</html>

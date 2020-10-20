@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> -- msg-board -- </title>
+</head>
+<body>
+<div id="app">
+    <h3>留言数:{{msg_board.length}}</h3>
+
+    <input type="text" v-model="info" placeholder="请在这里输入您的留言" >
+    <input type="button" value="publish" @click="add">
+    <input type="button" v-show="msg_board.length>0" value="del_all" @click="del(0,msg_board.length)">
+    <ul v-for="(msg,index) in msg_board" :key="index">
+        <li>{{msg}} <input type="button" value="del" @click="del(index)"></li>
+    </ul>
+    <h3 v-show="msg_board.length==0">
+        快来留言吧!!!
+    </h3>
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            info: '',
+            msg_board: ['玻璃晴朗', '橘子辉煌'],
+        },
+        methods: {
+            add() {
+                if (this.info) {
+                    this.msg_board.unshift(this.info)
+                    this.info = ''
+                }
+            },
+            del(index, num = 1) {
+                this.msg_board.splice(index, num)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

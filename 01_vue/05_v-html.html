@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-html </title>
+</head>
+<body>
+<div id="app">
+    {{msg}}<br>
+    <span v-html="msg"></span>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg:"<a href=\"\">🧑</a>"
+        },
+    })
+</script>
+
+</body>
+</html>

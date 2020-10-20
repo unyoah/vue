@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> vue -- 入门 </title>
+    <title> vue -- 双向绑定</title>
 </head>
 <body>
 <div id="app">
-    <span>太阳强烈，水波温柔</span><br>
-    <span v-text="msg">太阳强烈，水波温柔</span>
+
+    <input type="text" v-model="msg">
+    <h1>{{msg}}</h1>
+
+
 </div>
 
 
@@ -16,7 +19,8 @@
     new Vue({
         el: '#app',
         data: {
-            msg: '玻璃晴朗，橘子辉煌'
+            msg: '',
+
         },
     })
 </script>

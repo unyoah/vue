@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-text </title>
+</head>
+<body>
+<div id="app">
+    <span>太阳强烈，水波温柔</span><br>
+    <span v-text="msg">太阳强烈，水波温柔</span>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '玻璃晴朗，橘子辉煌'
+        },
+    })
+</script>
+
+</body>
+</html>

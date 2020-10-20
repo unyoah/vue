@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-if使用 </title>
+</head>
+<body>
+<div id="app">
+<h3>{{num}}</h3>
+    <h3 v-if="num<0"><0 </h3>
+    <h3 v-else-if="num<5">0-4</h3>
+    <h3 v-else-if="num<10">5-9</h3>
+    <h3 v-else>>10</h3>
+
+    <input type="button" value="+" @click="add">
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num:-2
+        },
+        methods:{
+            add(){
+                this.num++
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

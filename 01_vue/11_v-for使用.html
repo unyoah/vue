@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- v-for使用 </title>
+</head>
+<body>
+<div id="app">
+<span v-for="(value,key,index) in user">
+    user[{{index}}] ({{key}}:{{value}})<br>
+</span>
+    <ul v-for="(alp,index) in arr">
+        <li> arr[{{index}}]:{{alp}}</li>
+    </ul>
+    <ul v-for="(user,index) in users">
+        <li>users[{{index}}],name:{{user.name}},age:{{user.age}}</li>
+    </ul>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            user: {name: '橘子', age: 12},
+            arr: ['a', 'b', 'c', 'd', 'e'],
+            users: [
+                {name: '橘子', age: 12},
+                {name: '苹果', age: 13},
+                {name: '西瓜', age: 14},
+            ]
+        },
+    })
+</script>
+
+</body>
+</html>
