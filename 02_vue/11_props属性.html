@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- props属性 </title>
+    <style>
+        .red {
+            color: #fec0cb;
+        }
+
+        .blue {
+            color: #0000a1;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <com color="red"></com>
+    <com color="blue"></com>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+
+    let com = {
+        template: `<div :class="color">
+            ===========
+</div>`,
+        props:["color"]
+    };
+
+    new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components: {
+            'com': com,
+        }
+    })
+</script>
+
+</body>
+</html>

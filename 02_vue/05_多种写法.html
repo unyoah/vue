@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> --多种写法-- </title>
+</head>
+<body>
+<script>
+    let app = (x, y) => console.log(x * y);
+    app(3, 9);
+
+    let app2 = x => console.log(x + 8);
+    app2(2);
+
+    let app3 = function (a, b) {
+        return a + b
+    };
+    console.log(app3(2, 2));
+
+    let app4 = (m, n) => m + n;
+    console.log(app4(3, 3));
+
+
+    let app5 = () => console.log('📕📕📕📕📕📕📕📕')
+    app5()
+
+</script>
+</body>
+</html>

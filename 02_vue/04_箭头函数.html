@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> --箭头函数-- </title>
+</head>
+<body>
+
+<script>
+    function add(a, b) {
+        console.log(a + b);
+    }
+
+    let ad = function (a, b) {
+        console.log(a + b);
+    };
+    let ad2 = (a, b) => console.log(a * b);
+
+    let ad3 = function (a, b) {
+        console.log(a + b);
+        console.log('ad3');
+    };
+    let ad4 = (a, b) => {
+        console.log(a + b);
+        console.log('ad4');
+    };
+    add(1, 2);
+    ad(1, 2);
+    ad2(1, 2);
+    ad3(1, 2);
+    ad4(1, 2);
+</script>
+
+</body>
+</html>

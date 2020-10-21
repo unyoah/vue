@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 子传父 </title>
+</head>
+<body>
+<div id="app">
+    {{word}}
+    <com @change_word="change_word" ></com>
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    let com = {
+        template: `
+        <div>
+        <button @click="chag">change</button>
+</div>`,
+        methods: {
+            chag() {
+                this.$emit('change_word', '🍊')
+            }
+        }
+    };
+
+    new Vue({
+        el: '#app',
+        data: {
+            word: '橘子'
+        },
+
+        methods: {
+            change_word(word) {
+                console.log(word);
+                this.word = word
+            }
+        },
+        components: {
+            com: com,
+        },
+    })
+</script>
+
+</body>
+</html>

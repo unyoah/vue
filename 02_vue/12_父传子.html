@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 父传子 </title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="name"><br>
+    {{name}}
+    <app :data="name"></app>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    let app = {
+        template: `
+        <div> app:{{ data }} </div>`,
+        props: ['data']
+    }
+    new Vue({
+        el: '#app',
+        data: {
+            name: ''
+        },
+        components: {
+            app: app
+        }
+
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 侦听器 </title>
+</head>
+<body>
+<div id="app">
+    <p @click="add">{{num}}</p>
+    <p>{{tens_digit}}</p>
+    <p>{{units_digit}}</p>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 24,
+            tens_digit: '',
+            units_digit: ''
+        },
+        methods: {
+            add() {
+                this.num++;
+            }
+        },
+        watch: {
+            num() {
+                this.tens_digit = parseInt(this.num / 10)
+                this.units_digit = parseInt(this.num % 10)
+            },
+        },
+    })
+</script>
+
+</body>
+</html>

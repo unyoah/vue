@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 计算属性 </title>
+</head>
+<body>
+<div id="app">
+    <p @click="add">{{num}}</p>
+    <p>{{ parseInt(num/10) }}</p>
+    <p>{{num % 10}}</p>
+    <hr>
+    <!--    <input type="text" v-model="tens_digit">-->
+    <!--    <input type="text" v-model="units_digit">-->
+    <input type="number" v-model="tens_digit" max="9" min="0">
+    <input type="number" v-model="units_digit" max="9" min="0">
+
+    <b>:{{tens_digit *10 + +units_digit}}</b>
+    <b>{{result}}</b>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            num: 34,
+            tens_digit: '',
+            units_digit: '',
+        },
+        methods: {
+            add() {
+                this.num++;
+            }
+        },
+        computed: {
+            result() {
+                return this.tens_digit * 10 + +this.units_digit
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

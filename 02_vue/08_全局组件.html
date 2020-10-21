@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 全局组件 </title>
+</head>
+<body>
+<div id="app">
+    <com></com>
+    <com></com>
+    <com></com>
+</div>
+
+<com></com>
+<script src="../js/vue.min.js"></script>
+<script>
+
+    let com = {
+        template: `
+        <div>  first component {{user}} </div>
+`,
+        // data: function () {
+        //     return {
+        //         user: '橘子',
+        //     }
+        // }
+        data() {
+            return {
+                user: '橘子'
+            }
+        }
+    };
+    Vue.component("com", com);
+
+
+    new Vue({
+        el: '#app',
+        data: {},
+    })
+</script>
+
+</body>
+</html>
