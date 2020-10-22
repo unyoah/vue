@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 组件的应用 </title>
+</head>
+<body>
+<div id="app">
+    <h3>欢迎页</h3>
+
+    <router-link to="/index">首页</router-link>
+    <router-link to="/user">用户</router-link>
+    <hr>
+    <router-view></router-view>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.3.0.1.js"></script>
+<script>
+
+    let index = {
+        template: `
+        <div>
+        <h3>首页</h3>
+
+</div>`
+    };
+
+    let user = {
+        template: `
+        <div>
+        <h3>用户列表</h3>
+        <table border="2" cellspacing="0" >
+            <tr>
+                <td>id</td>
+                <td>姓名</td>
+                <td>生日</td>
+                <td>操作</td>
+            </tr>
+            <tr v-for="user in users" :key="user.id">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.bir}}</td>
+                <td>del | update</td>
+            </tr>
+        </table>
+        </div>`,
+        data() {
+            return {
+                users: [
+                    {'id': 1, name: '🍎', bir: '2020-1-1'},
+                    {'id': 2, name: '🍉', bir: '2020-1-1'},
+                    {'id': 3, name: '🍌', bir: '2020-1-1'},
+                ]
+            }
+        }
+    };
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/index', component: index},
+            {path: '/user', component: user},
+            {path: '/', redirect:'/index'},
+            {path: '/*', redirect:'/index'},
+
+        ]
+    });
+
+    new Vue({
+        el: '#app',
+        data: {},
+        router: myRouter,
+    })
+</script>
+
+</body>
+</html>

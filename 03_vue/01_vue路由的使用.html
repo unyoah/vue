@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 路由的使用 </title>
+</head>
+<body>
+<div id="app">
+    <h3> 主页 </h3>
+    <hr>
+    <router-link to="/first">to first</router-link>
+    <router-link to="/second">to second</router-link>
+
+    <router-view></router-view>
+
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.3.0.1.js"></script>
+
+<script>
+    let first = {
+        template: `
+        <div> first </div>`
+    }
+    let second = {
+        template: `
+        <div> second </div>`
+    }
+
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/first', component: first},
+            {path: '/second', component: second},
+            {path: '/', component: first},
+
+        ]
+    })
+
+    new Vue({
+        el: '#app',
+        data: {},
+        router: myRouter
+    })
+</script>
+
+</body>
+</html>

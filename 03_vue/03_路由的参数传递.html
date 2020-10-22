@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> vue -- 路由的参数传递 </title>
+</head>
+<body>
+<div id="app">
+   <router-view></router-view>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script src="../js/vue-router.3.0.1.js"></script>
+<script>
+
+    let first = {
+        template: `
+        <div>
+        <h3>组件1</h3>
+        <router-link to="second/?id=3&name=tinn">组件2</router-link>
+</div>`
+    }
+    let second = {
+        template: `
+        <div>
+        <h3>组件2</h3>
+        <br>
+        {{$route.query.id}}
+        ,{{$route.query.name}}
+</div>`
+    }
+    let myRouter = new VueRouter({
+        routes: [
+            {path: '/first', component: first},
+            {path: '/second', component: second},
+            {path: '/', redirect: '/first'},
+        ]
+    });
+    new Vue({
+        el: '#app',
+        data: {},
+        router: myRouter
+    })
+</script>
+
+</body>
+</html>
