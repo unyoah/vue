@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> -- 案例 -- </title>
+</head>
+<body>
+<div id="app">
+    <first></first>
+    <hr>
+    <second></second>
+</div>
+
+
+<script src="../js/vue.min.js"></script>
+<script src="../js/vuex.3.0.1.js"></script>
+<script>
+    let first = {
+        template: `
+        <div>
+        <button @click="update">按钮</button>
+
+</div>  `,
+        methods: {
+            update() {
+                this.$store.commit('editUser', {name: '🍉', pwd: 123456})
+            }
+        }
+    }
+    let second = {
+        template: `
+        <div>
+
+        {{$store.state.user}}
+</div>
+
+        `
+    }
+    let myStore = new Vuex.Store({
+        state: {
+            user: {name: '西瓜', pwd: 666666}
+        },
+        mutations: {
+            editUser(state, user) {
+                state.user = user
+            }
+        }
+
+    })
+
+    new Vue({
+        el: '#app',
+        data: {},
+        components: {
+            first: first,
+            second: second
+        },
+        store: myStore
+    })
+</script>
+
+</body>
+</html>
