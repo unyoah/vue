@@ -25,6 +25,7 @@
             }
         },
         created() {
+
             let users = JSON.parse(localStorage.users)
             let id = parseInt(this.$route.params.id)
             for (let i = 0; i < users.length; i++) {
