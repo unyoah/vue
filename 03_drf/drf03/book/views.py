@@ -1,8 +1,9 @@
-from rest_framework import status
+from rest_framework import status, generics
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from book.serializers import BookSerializer
-
+from rest_framework.mixins import *
 from book.models import Book
 
 
@@ -139,3 +140,31 @@ class BookAPIView(APIView):
             'status': status.HTTP_200_OK,
             'message': '修改成功'
         })
+
+
+class BookGenericAPIView(GenericAPIView, RetrieveModelMixin, ListModelMixin
+    , DestroyModelMixin, CreateModelMixin, UpdateModelMixin):
+    queryset = Book.objects.filter()
+    serializer_class = BookSerializer
+    lookup_field = 'id'
+
+    def get(self, request, *args, **kwargs):
+        if 'id' in kwargs:
+            return self.retrieve(request, *args, **kwargs)
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        # return self.update(request, *args, **kwargs)
+        return self.partial_update(request, *args, **kwargs)
+
+
+class BookGenericsAPIView(generics.RetrieveUpdateDestroyAPIView, generics.CreateAPIView):
+    queryset = Book.objects.filter()
+    serializer_class = BookSerializer
+    lookup_field = 'id'
