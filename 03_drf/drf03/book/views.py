@@ -1,3 +1,4 @@
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from book.serializers import BookSerializer
@@ -87,18 +88,54 @@ class BookAPIView(APIView):
     def patch(self, request, *args, **kwargs):
         request_data = request.data
         book_id = kwargs.get('id')
-        try:
-            book = Book.objects.get(pk=book_id)
-        except Book.DoesNotExist:
+        # try:
+        #     book = Book.objects.get(pk=book_id)
+        # except Book.DoesNotExist:
+        #     return Response({
+        #         'status': 400,
+        #         'msg': '修改失败',
+        #     })
+        # serializer = BookSerializer(data=request_data, instance=book, partial=True)
+        # serializer.is_valid(raise_exception=True)
+        # serializer.save()
+        # return Response({
+        #     'status': 200,
+        #     'msg': '修改成功',
+        #     'results': BookSerializer(book).data
+        # })
+
+        if book_id and isinstance(request_data, dict):
+            book_ids = [book_id]
+            request_data = [request_data]
+        elif not book_id and isinstance(request_data, list):
+            book_ids = []
+            for dic in request_data:
+                pk = dic.pop('id', None)
+                if pk:
+                    book_ids.append(pk)
+                else:
+                    return Response({
+                        'status': status.HTTP_400_BAD_REQUEST,
+                        'message': 'PK不存在'
+                    })
+        else:
             return Response({
-                'status': 400,
-                'msg': '修改失败',
+                'status': status.HTTP_400_BAD_REQUEST,
+                'message': '参数格式不正确'
             })
-        serializer = BookSerializer(data=request_data, instance=book, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+        book_list = []
+        new_data = []
+        for index, pk in enumerate(book_ids):
+            try:
+                book_objects = Book.objects.get(pk=pk)
+                book_list.append(book_objects)
+                new_data.append(request_data[index])
+            except Book.DoesNotExist:
+                continue
+        book_serializer = BookSerializer(data=new_data, instance=book_list, partial=True, many=True)
+        book_serializer.is_valid(raise_exception=True)
+        book_serializer.save()
         return Response({
-            'status': 200,
-            'msg': '修改成功',
-            'results': BookSerializer(book).data
+            'status': status.HTTP_200_OK,
+            'message': '修改成功'
         })
