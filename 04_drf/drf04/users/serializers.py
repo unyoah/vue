@@ -7,7 +7,7 @@ class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('user_name', 'password')
+        fields = ('user_name', 'password', "re_password")
         extra_kwargs = {
 
             "user_name": {
@@ -20,7 +20,11 @@ class UserModelSerializer(serializers.ModelSerializer):
             }
         }
 
+    re_password = serializers.CharField()
+
     def validate(self, attrs):
+        if attrs.get("password") != attrs.pop("re_password"):
+            raise exceptions.ValidationError("密码不一样")
         if not attrs.get('user_name'):
             raise exceptions.ValidationError('未输入用户名')
         user_obj = User.objects.filter(user_name=attrs.get('user_name'))

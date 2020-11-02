@@ -16,13 +16,12 @@ class UserView(GenericViewSet, GenericAPIView, CreateModelMixin):
 
     def user_register(self, request, *args, **kwargs):
         request_data = request.data
-        if request_data.get('password')!=request_data.pop('re_password'):
-            return Response({
-                'status': status.HTTP_400_BAD_REQUEST,
-                'message': '注册失败',
-            })
+        # if request_data.get('password')!=request_data.pop('re_password'):
+        #     return Response({
+        #         'status': status.HTTP_400_BAD_REQUEST,
+        #         'message': '注册失败',
+        #     })
         serializer = self.get_serializer(data=request_data)
-        print(serializer)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         return Response({
